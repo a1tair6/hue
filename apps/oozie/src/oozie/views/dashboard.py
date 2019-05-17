@@ -790,15 +790,13 @@ def rerun_oozie_job(request, job_id, app_path=None):
     initial_params = ParameterForm.get_initial_params(oozie_workflow.conf_dict)
     params_form = ParametersFormSet(initial=initial_params)
 
-  popup = render('dashboard/rerun_workflow_popup.mako', request, {
+    return render('dashboard/rerun_workflow_popup.mako', request, {
                    'rerun_form': rerun_form,
                    'params_form': params_form,
                    'action': reverse('oozie:rerun_oozie_job', kwargs={'job_id': job_id, 'app_path': app_path}),
                    'return_json': return_json,
                    'is_mini': request.GET.get('is_mini', False),
-                 }, force_template=True).content
-
-  return JsonResponse(popup, safe=False)
+                 }, force_template=True)
 
 
 def _rerun_workflow(request, oozie_id, run_args, mapping):
@@ -854,15 +852,13 @@ def rerun_oozie_coordinator(request, job_id, app_path=None):
     initial_params = ParameterForm.get_initial_params(oozie_coordinator.conf_dict)
     params_form = ParametersFormSet(initial=initial_params)
 
-  popup = render('dashboard/rerun_coord_popup.mako', request, {
+    return render('dashboard/rerun_coord_popup.mako', request, {
                    'rerun_form': rerun_form,
                    'params_form': params_form,
                    'action': reverse('oozie:rerun_oozie_coord', kwargs={'job_id': job_id, 'app_path': app_path}),
                    'return_json': return_json,
                    'is_mini': request.GET.get('is_mini', False),
-                 }, force_template=True).content
-
-  return JsonResponse(popup, safe=False)
+                 }, force_template=True)
 
 
 def _rerun_coordinator(request, oozie_id, args, params, properties):
@@ -921,13 +917,11 @@ def rerun_oozie_bundle(request, job_id, app_path):
     initial_params = ParameterForm.get_initial_params(oozie_bundle.conf_dict)
     params_form = ParametersFormSet(initial=initial_params)
 
-  popup = render('dashboard/rerun_bundle_popup.mako', request, {
+    return render('dashboard/rerun_bundle_popup.mako', request, {
                    'rerun_form': rerun_form,
                    'params_form': params_form,
                    'action': reverse('oozie:rerun_oozie_bundle', kwargs={'job_id': job_id, 'app_path': app_path}),
-                 }, force_template=True).content
-
-  return JsonResponse(popup, safe=False)
+                 }, force_template=True)
 
 
 def _rerun_bundle(request, oozie_id, args, params, properties):

@@ -2920,7 +2920,7 @@ ${ commonheader("Job Browser", "jobbrowser", user, request) | n,unicode }
       });
       self.rerunEnabled = ko.pureComputed(function() {
         return self.hasRerun() && self.selectedJobs().length == 1 && $.grep(self.selectedJobs(), function(job) {
-          return job.rerunEnabled();
+          return true;
         }).length == self.selectedJobs().length;
       });
 
